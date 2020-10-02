@@ -57,6 +57,12 @@ class Bien
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="biens")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $proprietaire;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +160,18 @@ class Bien
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getProprietaire(): ?user
+    {
+        return $this->proprietaire;
+    }
+
+    public function setProprietaire(?user $proprietaire): self
+    {
+        $this->proprietaire = $proprietaire;
 
         return $this;
     }

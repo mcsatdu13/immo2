@@ -1,4 +1,13 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="row justify-content-between">
+    	<div class="col-2">
+    		<button class="btn">{{ button_label|default('Save') }}</button>
+    	</div>
+    {% if app.request.get('_route') == 'bien_edit' %}
+	    <div class="col-2">
+    {{ include('bien/_delete_form.html.twig')}}
+    	</div>
+    	{% endif %}
+    </div>
 {{ form_end(form) }}
