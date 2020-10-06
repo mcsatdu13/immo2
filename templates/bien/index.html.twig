@@ -3,47 +3,49 @@
 {% block title %}Bien index{% endblock %}
 
 {% block body %}
-    <h1>Bien index</h1>
+    <h1 class="text-center">Bien index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Photo</th>
-                <th>Categorie</th>
-                <th>Titre</th>
-                <th>Type</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for bien in biens %}
-            <tr>
-                <td>{{ bien.id }}</td>
-                <td>{{ bien.description }}</td>
-                <td>{{ bien.prix }}</td>
-                <td>{{ bien.photo }}</td>
-                <td>{{ bien.categorie }}</td>
-                <td>{{ bien.titre }}</td>
-                <td>{{ bien.type }}</td>
-                <td>{{ bien.createdAt ? bien.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ bien.updatedAt ? bien.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('bien_show', {'id': bien.id}) }}">show</a>
-                    <a href="{{ path('bien_edit', {'id': bien.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<!-- Grid row -->
+<div class="row">
+    {% for bien in biens %}
+  <!-- Grid column -->
+    <div class="col-md-6 mb-4">
 
-    <a href="{{ path('bien_new') }}">Create new</a>
+    <!--Card-->
+        <div class="card default-color-dark">
+
+          <!--Card image-->
+          <div class="view">
+            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(125).jpg" class="card-img-top" alt="photo">
+            <a href="#">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+
+          <!--Card content-->
+          <div class="card-body text-center">
+            <!--Title-->
+            <h4 class="card-title white-text">{{ bien.titre }}</h4>
+                <strong>{{ bien.prix }} €</strong>
+            <!--Text-->
+            <p class="card-text white-text">{{ bien.description }}</p>
+            <div class="d-flex justify-content-around">
+                <p>{{ bien.categorie }}</p>
+                <a href="{{ path('bien_show', {'id': bien.id}) }}" class="btn btn-outline-white btn-md waves-effect">Voir détails</a>
+                <p>{{ bien.type }}</p>
+            </div>
+          </div>
+
+        </div>
+    <!--/.Card-->
+
+    </div>
+  <!-- Grid column -->
+
+  <!-- Grid column -->
+  {% endfor %}
+
+</div>
+<!-- Grid row -->
+        
 {% endblock %}

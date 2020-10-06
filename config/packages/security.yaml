@@ -15,11 +15,14 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        
         main:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                remember_me: true
+                default_target_path: /bien
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds
@@ -30,7 +33,11 @@ security:
             logout:
                 path: fos_user_security_logout
                 # where to redirect after logout
-                target: /bien
+                target: /
+            # login:
+            #     pattern: ^/(login$|register|resetting)
+            #     anonymous: true
+
         
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

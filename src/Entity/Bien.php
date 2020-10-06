@@ -145,10 +145,14 @@ class Bien
     {
         return $this->createdAt;
     }
+    
+    /**
+    * @ORM\PrePersist
+    */
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
 
         return $this;
     }
@@ -158,9 +162,13 @@ class Bien
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    /**
+    * @ORM\PreUpdate
+    */
+
+    public function setUpdatedAt(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
 
         return $this;
     }
