@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BienRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass=BienRepository::class)
@@ -164,12 +165,12 @@ class Bien
         return $this;
     }
 
-    public function getProprietaire(): ?user
+    public function getProprietaire(): ?User
     {
         return $this->proprietaire;
     }
 
-    public function setProprietaire(?user $proprietaire): self
+    public function setProprietaire(?User $proprietaire): self
     {
         $this->proprietaire = $proprietaire;
 

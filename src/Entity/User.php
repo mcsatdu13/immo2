@@ -44,7 +44,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $code_postal;
+    private $codepostal;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
@@ -115,12 +115,12 @@ class User extends BaseUser
 
     public function getCodePostal(): ?int
     {
-        return $this->code_postal;
+        return $this->codepostal;
     }
 
-    public function setCodePostal(int $code_postal): self
+    public function setCodePostal(int $codepostal): self
     {
-        $this->code_postal = $code_postal;
+        $this->codepostal = $codepostal;
 
         return $this;
     }
