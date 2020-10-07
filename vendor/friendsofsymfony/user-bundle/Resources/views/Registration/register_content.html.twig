@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Nouveau compte{% endblock %}
+
+{% block body %}
+<!-- Card -->
+<div class="card mt-5">
+
+  <!-- Card body -->
+  <div class="card-body">
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}, 'class': 'border border-light p-5'}) }}
+<p class="h4 text-center py-4">Créer un compte</p>
+
+      <!-- Material input text -->
+      <div class="md-form">
+        <i class="fa fa-user prefix blue-text"></i>
+        {{form_widget(form.username)}}
+        <label for="materialFormCardNameEx" class="font-weight-light">Nom d'utilisateur</label>
+      </div>
+
+      <!-- Material input email -->
+      <div class="md-form">
+        <i class="fa fa-envelope prefix blue-text"></i>
+        {{form_widget(form.email)}}
+        <label for="materialFormCardEmailEx" class="font-weight-light">Votre email</label>
+      </div>
+
+       <!-- Material input password -->
+      <div class="md-form">
+        <i class="fa fa-lock prefix blue-text"></i>
+        {{ form_widget(form.plainPassword.first) }}
+        <label for="materialFormCardPasswordEx" class="font-weight-light">Votre mot de passe</label>
+        {{ form_help(form.plainPassword) }}
+        <small class="grey-text ml-5">Votre mot de passe doit contenir au moins une majuscule et un chiffre et doit contenir 8 caractères minimum.</small>
+      </div>
+      <!-- Material input password -->
+      <div class="md-form">
+        <i class="fa fa-lock prefix blue-text"></i>
+        {{ form_widget(form.plainPassword.second) }}
+        <label for="materialFormCardPasswordEx" class="font-weight-light">Votre mot de passe</label>
+      </div>
+     
+
+      <div class="text-center py-4 mt-3">
+            <button class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}"> Valider </button>
+    </div>   
+{{ form_end(form) }}
+
+  </div>
+  <!-- Card body -->
+
+</div>
+<!-- Card -->
+{%  endblock %}

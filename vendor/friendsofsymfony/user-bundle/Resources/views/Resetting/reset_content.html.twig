@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block body %}
+	<div class="card mt-5">
+	<!-- Card body -->
+  		<div class="card-body">
+			{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+			    <p class="h4 text-center py-4">Modifier votre mot de passe</p>
+			    <div class="md-form">
+			        <i class="fa fa-lock prefix blue-text"></i>
+			        {{ form_widget(form.plainPassword.first) }}
+			        <label for="materialFormCardPasswordEx" class="font-weight-light">Votre mot de passe</label>
+			        {{ form_help(form.plainPassword.first) }}
+			        <small class="grey-text ml-5">Votre mot de passe doit contenir au moins une majuscule et un chiffre et doit contenir 8 caractères minimum.</small>
+			      </div>
+			      <div class="md-form">
+			        <i class="fa fa-lock prefix blue-text"></i>
+			        {{ form_widget(form.plainPassword.second) }}
+			        <label for="materialFormCardPasswordEx" class="font-weight-light">Confirmez votre mot de passe</label>
+			      </div>
+			    <div class="text-center py-4 mt-3">
+			        <button class="btn btn-primary text-center" type="submit" value="{{ 'resetting.reset.submit'|trans }}">Valider</button>
+			    </div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block body %}
+<div class="fos_user_user_show card mt-5 text-center">
+
+    <p><i class="fas fa-user blue-text"></i> {{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p><i class="fas fa-at blue-text"></i> {{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <p><i class="fas fa-user blue-text"></i> {{ 'profile.show.name'|trans }}: {{ user.nom }}</p>
+    <p><i class="fas fa-user blue-text"></i> {{ 'profile.show.firstname'|trans }}: {{ user.prenom }}</p>
+    <p><i class="fas fa-map-marker-alt blue-text"></i> {{ 'profile.show.adress'|trans }}: {{ user.adresse }}</p>
+    <p><i class="fas fa-map-marker-alt blue-text"></i> {{ 'profile.show.zipcode'|trans }}: {{ user.codepostal }}</p>
+    <p><i class="fas fa-city blue-text"></i> {{ 'profile.show.city'|trans }}: {{ user.ville }}</p>
+    <p><i class="fas fa-phone blue-text"></i> {{ 'profile.show.phone'|trans }}: {{ user.telephone }}</p>
+
+</div>
+<div class="row justify-content-between">
+<a class="btn btn-warning" href="/profile/edit">Editer</a>
+{{ include('user/_delete_form.html.twig') }}
+</div>
+{% endblock %}

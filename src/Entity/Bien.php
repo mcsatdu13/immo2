@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\BienRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=BienRepository::class)
@@ -30,8 +32,20 @@ class Bien
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $photo;
+
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @var File
+     */
+    private $photoFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -63,6 +77,27 @@ class Bien
      * @ORM\JoinColumn(nullable=false)
      */
     private $proprietaire;
+    
+    public function setPhotoFile(File $photo = null)
+    {
+        $this->photoFile = $photo;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($photo) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getPhotoFile()
+    {
+        return $this->photoFile;
+    }
+
+    
+    
 
     public function getId(): ?int
     {
